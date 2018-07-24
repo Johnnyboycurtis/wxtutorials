@@ -1,3 +1,3 @@
-# Chapter 05 - Notebook
+# Chapter 05  - Web Browser
 
-Add notebook to panel
+Create a basic web browser
