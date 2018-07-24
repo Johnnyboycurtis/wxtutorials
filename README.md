@@ -1,5 +1,10 @@
 # wxtutorials
 
+## What is this?
+
+This is a repository of wxPython tutorials. It is to accompany the lecture videos I've uploaded (pending) to YouTube.
+
+- Link to be added upon video uploads
 
 ## Requirements
 
@@ -7,12 +12,25 @@
 
 - Python 3.6+
 
+- Some python experience (strongly recommended)
+
 - Git (recommended, you're on Github)
 
 - Bash-like terminal (recommended)
 
-## Set up
 
+## Who is this for?
+
+People who 
+
+- don't want to learn PyQT and don't want to pay for the liscensing.
+
+- need a simple GUI platform
+
+Better looking platforms exist, but wxPython can be quick and easy to develop applications in.
+
+
+## Set up
 
 All code was written on a Ubuntu machine, but is compatible with *most* Windows machines. If you are developing natively on Windows, be sure to have a Unix like terminal available like Git-bash or Ubuntu terminal.
 
@@ -59,12 +77,14 @@ To install `wxPython` and all other necessary packages, run
     conda install matplotlib numpy ipython
 
 
-## Who is this for?
 
-People who 
 
-- don't want to learn PyQT and don't want to pay for the liscensing.
+## Still confused?
 
-- need a simple GUI platform
+Here are some  helpful resources, but beware, they may be outdated
 
-Better looking platforms exist, but wxPython can be quick and easy to develop applications in.
+- http://zetcode.com/wxpython/
+
+- https://wiki.wxpython.org/How%20to%20Learn%20wxPython
+
+- https://www.tutorialspoint.com/wxpython/
