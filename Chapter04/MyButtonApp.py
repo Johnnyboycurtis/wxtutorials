@@ -44,7 +44,10 @@ class MyForm(wx.Frame):
 
         inputFourIco = wx.StaticBitmap(self.panel, wx.ID_ANY, bmp)
         labelFour = wx.StaticText(self.panel, wx.ID_ANY, 'Input 4')
-        inputTxtFour = wx.TextCtrl(self.panel, wx.ID_ANY, '')
+        #inputTxtFour = wx.TextCtrl(self.panel, wx.ID_ANY, '')
+        inputFour1 = wx.CheckBox(parent=self.panel, label="Choice 1")
+        inputFour2 = wx.CheckBox(parent=self.panel, label="Choice 2")
+        inputFour3 = wx.CheckBox(parent=self.panel, label="Choice 3")
 
         okBtn = wx.Button(self.panel, wx.ID_ANY, 'OK')
         cancelBtn = wx.Button(self.panel, wx.ID_ANY, 'Cancel')
@@ -77,7 +80,9 @@ class MyForm(wx.Frame):
 
         inputFourSizer.Add(inputFourIco, 0, wx.ALL, 5)
         inputFourSizer.Add(labelFour, 0, wx.ALL, 5)
-        inputFourSizer.Add(inputTxtFour, 1, wx.ALL|wx.EXPAND, 5)
+        inputFourSizer.Add(inputFour1, 1, wx.ALL|wx.EXPAND, 5)
+        inputFourSizer.Add(inputFour2, 1, wx.ALL|wx.EXPAND, 5)
+        inputFourSizer.Add(inputFour3, 1, wx.ALL|wx.EXPAND, 5)
 
         btnSizer.Add(okBtn, 0, wx.ALL, 5)
         btnSizer.Add(cancelBtn, 0, wx.ALL, 5)
