@@ -49,11 +49,11 @@ class MyForm(wx.Panel):
         inputTwoIco = wx.StaticBitmap(self, wx.ID_ANY, bmp)
         labelTwo = wx.StaticText(self, wx.ID_ANY, 'Input 2')
         # wx.SpinCtrl combines wx.TextCtrl and wx.SpinButton in one control.
-        self.inputTxtTwo = wx.SpinCtrl(self, wx.ID_ANY, value="0", min=0, max=100)
+        self.inputTwo = wx.SpinCtrl(self, wx.ID_ANY, value="0", min=0, max=100)
 
         inputThreeIco = wx.StaticBitmap(self, wx.ID_ANY, bmp)
         labelThree = wx.StaticText(self, wx.ID_ANY, 'Input 3')
-        self.inputTxtThree = wx.Choice(self, choices=['A', 'B', 'C'])
+        self.inputThree = wx.Choice(self, choices=['A', 'B', 'C'])
         
 
         inputFourIco = wx.StaticBitmap(self, wx.ID_ANY, bmp)
@@ -85,11 +85,11 @@ class MyForm(wx.Panel):
 
         inputTwoSizer.Add(inputTwoIco, 0, wx.ALL, 5)
         inputTwoSizer.Add(labelTwo, 0, wx.ALL, 5)
-        inputTwoSizer.Add(self.inputTxtTwo, 1, wx.ALL|wx.EXPAND, 5)
+        inputTwoSizer.Add(self.inputTwo, 1, wx.ALL|wx.EXPAND, 5)
 
         inputThreeSizer.Add(inputThreeIco, 0, wx.ALL, 5)
         inputThreeSizer.Add(labelThree, 0, wx.ALL, 5)
-        inputThreeSizer.Add(self.inputTxtThree, 1, wx.ALL|wx.EXPAND, 5)
+        inputThreeSizer.Add(self.inputThree, 1, wx.ALL|wx.EXPAND, 5)
 
         inputFourSizer.Add(inputFourIco, 0, wx.ALL, 5)
         inputFourSizer.Add(labelFour, 0, wx.ALL, 5)
@@ -129,12 +129,15 @@ class MyForm(wx.Panel):
         self.GetParent().Close()
 
     def getData(self):
+        '''
+        this here will procure data from all buttons
+        '''
         data = []
         data.append(self.inputTxtOne.GetValue())
-        data.append(self.inputTxtTwo.GetValue())
-        selection = self.inputTxtThree.GetSelection()
+        data.append(self.inputTwo.GetValue())
+        selection = self.inputThree.GetSelection()
         data.append((selection, 
-                    self.inputTxtThree.GetString(selection))
+                    self.inputThree.GetString(selection))
                     )
         data.append(self.inputFour1.GetValue())
         data.append(self.inputFour2.GetValue())
