@@ -1,3 +1,1 @@
-# Chapter 05 - Notebook
-
-Add notebook to panel
+# Chapter 06 - Spreadsheet and Plot

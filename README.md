@@ -88,3 +88,8 @@ Here are some  helpful resources, but beware, they may be outdated
 - https://wiki.wxpython.org/How%20to%20Learn%20wxPython
 
 - https://www.tutorialspoint.com/wxpython/
+
+
+### How do I become an expert?
+
+Practice, my friend. [Complexity and the Ten-Thousand-Hour Rule](https://www.newyorker.com/news/sporting-scene/complexity-and-the-ten-thousand-hour-rule)

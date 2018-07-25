@@ -32,7 +32,7 @@ class MyForm(wx.Frame):
         bmp = wx.ArtProvider.GetBitmap(wx.ART_TIP, wx.ART_OTHER, (16, 16))
         inputOneIco = wx.StaticBitmap(self.panel, wx.ID_ANY, bmp)
         labelOne = wx.StaticText(self.panel, wx.ID_ANY, 'Input 1')
-        inputTxtOne = wx.TextCtrl(self.panel, wx.ID_ANY, '')
+        inputTxtOne = wx.TextCtrl(self.panel, wx.ID_ANY, value='Text box')
 
         inputTwoIco = wx.StaticBitmap(self.panel, wx.ID_ANY, bmp)
         labelTwo = wx.StaticText(self.panel, wx.ID_ANY, 'Input 2')

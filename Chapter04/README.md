@@ -1,3 +1,3 @@
-# Chapter 04 - Menu Bars
+# Chapter 03
 
-In this tutorial, you'll learn how to add a menu bar
+Here you will create an app with more buttons, and learn to organize them with `wx`'s  Sizers so your app doesn't look crummy.

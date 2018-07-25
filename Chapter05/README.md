@@ -1,3 +1,3 @@
-# Chapter 05  - Web Browser
+# Chapter 04 - Menu Bars
 
-Create a basic web browser
+In this tutorial, you'll learn how to add a menu bar
