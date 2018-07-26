@@ -19,14 +19,14 @@ class FileMenu(wx.Menu):
         self.parentFrame = parentFrame
     
     def OnInit(self):
-        newItem = wx.MenuItem(parentMenu=self, id=wx.ID_NEW, text="New", kind=wx.ITEM_NORMAL)
+        newItem = wx.MenuItem(parentMenu=self, id=wx.ID_NEW, text="&New\tCtrl+N", kind=wx.ITEM_NORMAL)
         self.Append(newItem)
 
-        openItem = wx.MenuItem(parentMenu=self, id=wx.ID_OPEN, text='Open...', kind=wx.ITEM_NORMAL)
+        openItem = wx.MenuItem(parentMenu=self, id=wx.ID_OPEN, text='&Open\tCtrl+O', kind=wx.ITEM_NORMAL)
         self.Append(openItem)
         self.Bind(wx.EVT_MENU, handler=self.onOpen, source=openItem)
 
-        saveItem = wx.MenuItem(parentMenu=self, id=wx.ID_SAVE, text="Save", helpString="Save your file", kind=wx.ITEM_NORMAL)
+        saveItem = wx.MenuItem(parentMenu=self, id=wx.ID_SAVE, text="&Save\tCtrl+S", helpString="Save your file", kind=wx.ITEM_NORMAL)
         self.Append(saveItem)
         self.Bind(wx.EVT_MENU, handler=self.onSave, source=saveItem)
 
