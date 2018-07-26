@@ -9,7 +9,7 @@ class MyApp(wx.App):
         self.InitFrame()
     
     def InitFrame(self):
-        frame = wx.Frame(parent=None, title="Basic Frame")
+        frame = MyFrame(parent=None, title="Basic Frame")
         frame._panel = MyPanel(frame)
         frame.Show(True)
 
