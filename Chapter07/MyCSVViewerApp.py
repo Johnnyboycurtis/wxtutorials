@@ -25,16 +25,17 @@ class MyFrame(wx.Frame):
         titlePanel = MyPanel(parent=self)
 
         mainSizer = wx.BoxSizer(wx.VERTICAL)
-        titleSizer = wx.BoxSizer()
-        gridSizer = wx.BoxSizer()
+        titleSizer = wx.BoxSizer(wx.HORIZONTAL)
+        gridSizer = wx.BoxSizer(wx.HORIZONTAL)
 
-        titleSizer.Add(titlePanel)
-        mainSizer.Add(titleSizer)
+        titleSizer.Add(titlePanel, 0, wx.ALL, 5)
+        mainSizer.Add(titleSizer, 0, wx.CENTER)
+        mainSizer.Add(wx.StaticLine(self,), 0, wx.ALL|wx.EXPAND, 5)
 
-
-        self._grid = CSVEditorGrid(self)
-        self._grid.LoadFile(self._file)
-        self._grid.SetColReadOnly(0)
+        grid = CSVEditorGrid(self)
+        grid.LoadFile()
+        gridSizer.Add(grid, 1, wx.ALL|wx.EXPAND, 5)
+        mainSizer.Add(gridSizer, 0, wx.ALL|wx.EXPAND, 5)
 
         self.SetSizer(mainSizer)
         mainSizer.Fit(self)
@@ -44,7 +45,6 @@ class MyPanel(wx.Panel):
     def __init__(self,parent):
         super().__init__(parent=parent)
         welcomeText = wx.StaticText(self, label="Welcome to wxPython", pos=(20,20))
-        print("hello!!!!")
 
 
 
@@ -61,6 +61,24 @@ class CSVDataSource(gridlib.GridTableBase):
         self._header = self._data.pop(0)
         self._readOnly = list()
 
+    def GetNumberRows(self):
+        return len(self._data) if self._data else 0
+
+    def GetNumberCols(self):
+        return len(self._header) if self._header else 0
+
+    def GetValue(self, row, col):
+        if not self._data:
+            return ""
+        else:
+            return self._data[row][col]
+
+    def SetValue(self, row, col, value):
+        if self._data:
+            self._data[row][col] = value
+
+    def GetColLabelValue(self, col):
+        return self._header[col] if self._header else None
 
 
 class CSVEditorGrid(gridlib.Grid):
@@ -70,7 +88,7 @@ class CSVEditorGrid(gridlib.Grid):
         self._data = CSVDataSource()
         self.SetTable(self._data)
 
-    def LoadFile(self, fileName):
+    def LoadFile(self, fileName='./sample_data.csv'):
         self._data.LoadFile(fileName)
         self.SetTable(self._data)
         self.AutoSizeColumns()
