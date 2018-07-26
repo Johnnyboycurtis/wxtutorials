@@ -38,8 +38,8 @@ class FileMenu(wx.Menu):
         self.Append(radioItem2)
 
         self.AppendSeparator() 
-
-        quitItem = wx.MenuItem(self, wx.ID_EXIT, '&Quit\tCtrl+Q') 
+        
+        quitItem = wx.MenuItem(parentMenu=self, id=wx.ID_EXIT, text='&Quit\tCtrl+Q') 
         self.Append(quitItem)
         self.Bind(wx.EVT_MENU, handler=self.onQuit, source=quitItem)
 
