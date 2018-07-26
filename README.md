@@ -1,5 +1,9 @@
 # wxtutorials
 
+![alt text](wxPythonApp.png "Basic App")
+
+
+
 ## What is this?
 
 This is a repository of wxPython tutorials. It is to accompany the lecture videos I've uploaded (pending) to YouTube.
