@@ -1,6 +1,7 @@
 import wx
 import wx.grid as gridlib
-import csv 
+import csv
+import io
 
 class MyApp(wx.App):
     def __init__(self):
@@ -21,7 +22,7 @@ class MyFrame(wx.Frame):
         self.OnInit()
 
     def OnInit(self):
-        print("On Init from MyFrame")
+        #print("On Init from MyFrame")
         titlePanel = MyPanel(parent=self)
 
         mainSizer = wx.BoxSizer(wx.VERTICAL)
@@ -34,6 +35,7 @@ class MyFrame(wx.Frame):
 
         grid = CSVEditorGrid(self)
         grid.LoadFile()
+        grid.SetColReadOnly(0)
         gridSizer.Add(grid, 1, wx.ALL|wx.EXPAND, 5)
         mainSizer.Add(gridSizer, 0, wx.ALL|wx.EXPAND, 5)
 
@@ -50,16 +52,20 @@ class MyPanel(wx.Panel):
 
 class CSVDataSource(gridlib.GridTableBase):
     def __init__(self):
-        super().__init__()
+        super(CSVDataSource, self).__init__()
         self._data = None
         self._header = None
         self._readOnly = list()
 
-    def LoadFile(self,fileName='./sample_data.csv'):
+    def LoadFile(self, fileName='./sample_data.csv'):
+        fileName = './sample_data.csv'
         reader = csv.reader(open(fileName, 'r'))
         self._data = [row for row in reader]
         self._header = self._data.pop(0)
         self._readOnly = list()
+
+    def SetColReadOnly(self, col):
+        self._readOnly.append(col)
 
     def GetNumberRows(self):
         return len(self._data) if self._data else 0
@@ -81,12 +87,19 @@ class CSVDataSource(gridlib.GridTableBase):
         return self._header[col] if self._header else None
 
 
+
 class CSVEditorGrid(gridlib.Grid):
     def __init__(self, parent):
-        super().__init__(parent)
+        super(CSVEditorGrid, self).__init__(parent)
 
         self._data = CSVDataSource()
         self.SetTable(self._data)
+
+        self.Bind(gridlib.EVT_GRID_COL_SORT, self.OnSort)
+
+    def OnSort(self, event):
+        self._data.Sort(event.Col,
+                        self.IsSortOrderAscending())
 
     def LoadFile(self, fileName='./sample_data.csv'):
         self._data.LoadFile(fileName)
@@ -94,6 +107,8 @@ class CSVEditorGrid(gridlib.Grid):
         self.AutoSizeColumns()
 
 
+    def SetColReadOnly(self, col):
+        self._data.SetColReadOnly(col)
 
 
 if __name__ == "__main__":
