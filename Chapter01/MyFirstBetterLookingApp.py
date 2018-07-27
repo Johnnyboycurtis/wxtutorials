@@ -29,7 +29,8 @@ class MyPanel(wx.Panel):
         super().__init__(parent=parent)
         
         # add a hello message to the panel
-        welcomeText = wx.StaticText(self, label="Welcome to wxPython", pos=(20,20))
+        welcomeText = wx.StaticText(self, id=wx.ID_ANY, label="Welcome to wxPython", pos=(20,20))
+        # ID_ANY means that we don’t care about the id
 
 
 if __name__ == "__main__":
