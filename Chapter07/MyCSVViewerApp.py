@@ -63,6 +63,10 @@ class CSVDataSource(gridlib.GridTableBase):
         self._data = [row for row in reader]
         self._header = self._data.pop(0)
         self._readOnly = list()
+    
+    def Sort(self, col, ascending):
+        #self._data.sort(key=lambda data: data[col], reverse=True)
+        pass
 
     def SetColReadOnly(self, col):
         self._readOnly.append(col)
