@@ -45,7 +45,6 @@ class FileMenu(wx.Menu):
 
     def onOpen(self, event):
         wildcard = "TXT files (*.txt)|*.txt"
-        #wx.FileDialog(parent=self.parentFrame)
         dialog = wx.FileDialog(self.parentFrame, "Open Text Files", wildcard=wildcard,
                                style=wx.FD_OPEN | wx.FD_FILE_MUST_EXIST)
 

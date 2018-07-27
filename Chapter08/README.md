@@ -1,3 +1,3 @@
-# Chapter 05 - Notebook
+# Chapter 07 - Notebook
 
 Add notebook to panel

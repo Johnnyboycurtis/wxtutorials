@@ -94,6 +94,11 @@ Here are some  helpful resources, but beware, they may be outdated
 - https://www.tutorialspoint.com/wxpython/
 
 
+### New to Python?
+
+I recommend Corey Schafer's [Python Tutorials](https://www.youtube.com/watch?v=YYXdXT2l-Gg&list=PL-osiE80TeTskrapNbzXhwoFUiLCjGgY7&index=1)
+
+
 ### How do I become an expert?
 
 Practice, my friend. [Complexity and the Ten-Thousand-Hour Rule](https://www.newyorker.com/news/sporting-scene/complexity-and-the-ten-thousand-hour-rule)

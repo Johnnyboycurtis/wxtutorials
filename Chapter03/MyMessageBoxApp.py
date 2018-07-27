@@ -39,7 +39,7 @@ class MyPanel(wx.Panel):
         dlg = wx.RichMessageDialog(parent=None, 
                 message= "Are you ready to learn wxPython?",
                 caption="wxPythonStuff",
-                style=wx.YES_NO|wx.CENTRE)
+                style=wx.YES_NO|wx.CANCEL|wx.CENTRE)
         dlg.ShowCheckBox("Don't show this again")
         dlg.ShowModal() # shows the dialog
 

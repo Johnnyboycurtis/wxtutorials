@@ -1,3 +1,7 @@
+'''
+Reference: https://wxpython.org/Phoenix/docs/html/grid_overview.html#grid-overview
+'''
+
 import wx
 import wx.grid as gridlib
 import csv
@@ -12,7 +16,6 @@ class MyApp(wx.App):
     
     def InitFrame(self):
         frame = MyFrame(parent=None, title="Basic Frame")
-        #frame._panel = MyPanel(frame)
         frame.Show(True)
 
 
@@ -22,9 +25,10 @@ class MyFrame(wx.Frame):
         self.OnInit()
 
     def OnInit(self):
-        #print("On Init from MyFrame")
+        # first creat some dummy panel to hold some text
         titlePanel = MyPanel(parent=self)
 
+        # create sizers to control layout
         mainSizer = wx.BoxSizer(wx.VERTICAL)
         titleSizer = wx.BoxSizer(wx.HORIZONTAL)
         gridSizer = wx.BoxSizer(wx.HORIZONTAL)
@@ -33,7 +37,8 @@ class MyFrame(wx.Frame):
         mainSizer.Add(titleSizer, 0, wx.CENTER)
         mainSizer.Add(wx.StaticLine(self,), 0, wx.ALL|wx.EXPAND, 5)
 
-        grid = CSVEditorGrid(self)
+        # data viewer
+        grid = GridTable(self)
         grid.LoadFile()
         grid.SetColReadOnly(0)
         gridSizer.Add(grid, 1, wx.ALL|wx.EXPAND, 5)
@@ -46,13 +51,13 @@ class MyFrame(wx.Frame):
 class MyPanel(wx.Panel):
     def __init__(self,parent):
         super().__init__(parent=parent)
-        welcomeText = wx.StaticText(self, label="Welcome to wxPython", pos=(20,20))
+        welcomeText = wx.StaticText(self, label="Data Grid Display", pos=(20,20))
 
 
 
-class CSVDataSource(gridlib.GridTableBase):
+class GridTableSource(gridlib.GridTableBase):
     def __init__(self):
-        super(CSVDataSource, self).__init__()
+        super().__init__()
         self._data = None
         self._header = None
         self._readOnly = list()
@@ -92,13 +97,14 @@ class CSVDataSource(gridlib.GridTableBase):
 
 
 
-class CSVEditorGrid(gridlib.Grid):
+class GridTable(gridlib.Grid):
     def __init__(self, parent):
-        super(CSVEditorGrid, self).__init__(parent)
+        super().__init__(parent)
 
-        self._data = CSVDataSource()
+        self._data = GridTableSource()
         self.SetTable(self._data)
 
+        # need to implement a sorting event; else sementation fault error
         self.Bind(gridlib.EVT_GRID_COL_SORT, self.OnSort)
 
     def OnSort(self, event):
