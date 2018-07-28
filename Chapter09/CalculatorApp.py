@@ -25,18 +25,22 @@ class CalcPanel(wx.Panel):
         self.makeButtons()
 
     def makeButtons(self):
-        mainButtons = [wx.Button(parent=self, id=wx.ID_ANY, label=b, size=(85, 33+ 2*i)) for i, b in enumerate(self._buttons)]
-        self.display = wx.TextCtrl(self, style= wx.TE_READONLY, value="", size=(240,40)) #wx.StaticText(self, wx.ID_ANY, 'OUTPUT HERE')
+        specialButtons = [wx.Button(parent=self, id=wx.ID_ANY, label="Clear")] # special calculator menu buttons
+        mainButtons = [wx.Button(parent=self, id=wx.ID_ANY, label=b) for b in self._buttons]
+        self.display = wx.TextCtrl(self, style= wx.TE_READONLY, value="", size=(240,50)) #wx.StaticText(self, wx.ID_ANY, 'OUTPUT HERE')
         self.needs_reset_display=False
 
         mainSizer = wx.BoxSizer(orient=wx.VERTICAL)
         displaySizer = wx.BoxSizer(orient=wx.HORIZONTAL)
+        rowZero = wx.BoxSizer(orient=wx.HORIZONTAL) # special buttons like clear
         rowOne = wx.BoxSizer(orient=wx.HORIZONTAL)
         rowTwo = wx.BoxSizer(orient=wx.HORIZONTAL)
         rowThree = wx.BoxSizer(orient=wx.HORIZONTAL)
         rowFour = wx.BoxSizer(orient=wx.HORIZONTAL)
 
         displaySizer.Add(self.display)
+
+        rowZero.Add(specialButtons[0], 0, wx.ALL, 5)
 
         rowOne.Add(mainButtons[0], 0, wx.ALL, 5)
         rowOne.Add(mainButtons[1], 0, wx.ALL, 5)
@@ -58,30 +62,31 @@ class CalcPanel(wx.Panel):
         rowFour.Add(mainButtons[14], 0, wx.ALL, 5)
         rowFour.Add(mainButtons[15], 0, wx.ALL, 5)
 
+
+
         ## then bind all buttons to events
         for i in range(15):
-            print(mainButtons[i].GetDefaultSize())
+            print("BUTTON:", mainButtons[i].GetLabel())
             self.Bind(wx.EVT_BUTTON, self.onSelect, mainButtons[i])
 
         self.Bind(wx.EVT_BUTTON, self.onEqual, mainButtons[15])
+        self.Bind(wx.EVT_BUTTON, self.onClear, specialButtons[0])
 
-        mainSizer.Add(displaySizer, 0, flag=wx.ALL | wx.ALIGN_CENTER)
+        mainSizer.Add(displaySizer, 1, wx.ALL | wx.ALIGN_CENTER, 5)
         #mainSizer.Add(wx.StaticLine(self,), 0, wx.ALL|wx.EXPAND, 5) # divider
         mainSizer.AddStretchSpacer()
-        mainSizer.Add(rowOne, 0, wx.ALL|wx.EXPAND, 5)
-        mainSizer.Add(rowTwo, 0, wx.ALL|wx.EXPAND, 5)
-        mainSizer.Add(rowThree, 0, wx.ALL|wx.EXPAND, 5)
-        mainSizer.Add(rowFour, 0, wx.ALL|wx.EXPAND, 5)
+        mainSizer.Add(rowZero, 0,wx.ALL | wx.ALIGN_CENTER, 5)
+        mainSizer.Add(rowOne, 0, wx.ALL | wx.ALIGN_CENTER, 5)
+        mainSizer.Add(rowTwo, 0, wx.ALL | wx.ALIGN_CENTER, 5)
+        mainSizer.Add(rowThree, 0, wx.ALL | wx.ALIGN_CENTER, 5)
+        mainSizer.Add(rowFour, 0, wx.ALL | wx.ALIGN_CENTER, 5)
 
         self.SetSizer(mainSizer)
-        mainSizer.Fit(self)
+        mainSizer.Fit(self.Parent)
         mainSizer.Layout()
 
     
     def onSelect(self,event):
-        if self.needs_reset_display:
-            self.display.SetValue("")
-            self.needs_reset_display = False
         buttonSelected = event.GetEventObject()
         text = buttonSelected.GetLabel()
         if text in "+-/*":
@@ -92,10 +97,12 @@ class CalcPanel(wx.Panel):
     def onEqual(self, event):
         text = self.display.GetLineText(0)
         print(text)
-        result = str(eval(text))
+        result = str(eval(text)) # evaluate the string the convert back to string
         print(result)
         self.display.SetValue(result)
-        self.needs_reset_display = True
+
+    def onClear(self, event):
+        self.display.Clear()
 
 
 
