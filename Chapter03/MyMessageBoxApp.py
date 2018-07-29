@@ -5,13 +5,24 @@ class MyApp(wx.App):
     def __init__(self):
         super().__init__()
 
+    def OnInit(self):
+        frame = MyFrame(parent=None, title="This is a frame")
+        frame.Show()
+        return True
+
 
 class MyFrame(wx.Frame):
     # subclass of wx.Window; Frame is a top level window
     # A frame is a window whose size and position can (usually) be changed by the user.
     # Usually represents the first/main window a user will see
     def __init__(self, parent, title):
-        super().__init__(parent=parent, title=title)
+        super().__init__(parent=parent, title=title, pos = (100, 100))
+
+        self.OnInit()
+
+    def OnInit(self):
+        panel = MyPanel(self)
+
 
 class MyPanel(wx.Panel):
     # A panel is a window on which controls are placed. (e.g. buttons and text boxes)
@@ -21,7 +32,7 @@ class MyPanel(wx.Panel):
         self._dont_show = False # for message dialog box
         
         # add a hello message to the panel
-        self._hellotext = wx.StaticText(self, label="Hello World!", pos=(20,20))
+        welcomeText = wx.StaticText(self, label="Hello World!", pos=(20,20))
 
         # add a text box
         self._text = wx.TextCtrl(parent= self, value = 'ENTER SOME TEXT HERE', pos = (20,60), size=(300, 50))
@@ -58,7 +69,5 @@ class MyPanel(wx.Panel):
 
 if __name__ == "__main__":
     app = MyApp()
-    frame = wx.Frame(parent=None, title="This is a frame")
-    frame._panel = MyPanel(frame)
-    frame.Show(True)
+    frame = MyFrame(parent=None, title="This is a frame")
     app.MainLoop()
