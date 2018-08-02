@@ -13,20 +13,18 @@ class MyApp(wx.App):
         self.InitFrame()
     
     def InitFrame(self):
-        #frame = MyForm()
         frame = MyFrame()
         frame.Show()
 
 
 class MyFrame(wx.Frame):
-    def __init__(self, title="MyButtonApp"):
-        super().__init__(None, title=title)
+    def __init__(self, title="MyButtonApp", pos=(100,100)):
+        super().__init__(None, title=title, pos=pos)
         # initialize the frame's contents
         self.OnInit()
 
     def OnInit(self):
         self.panel = MyForm(self)
-        #self.Show()
         self.Fit()
 
 class MyForm(wx.Panel):
@@ -37,11 +35,11 @@ class MyForm(wx.Panel):
         # Add a panel so it looks correct on all platforms
 
         # art provider provides basic art https://wxpython.org/Phoenix/docs/html/wx.ArtProvider.html
-        bmp = wx.ArtProvider.GetBitmap(id=wx.ART_INFORMATION, client=wx.ART_OTHER, size=(16, 16))
+        bmp = wx.ArtProvider.GetBitmap(id=wx.ART_INFORMATION, 
+        client=wx.ART_OTHER, size=(16, 16))
         titleIco = wx.StaticBitmap(self, wx.ID_ANY, bmp)
         title = wx.StaticText(self, wx.ID_ANY, 'My Title')
 
-        bmp = wx.ArtProvider.GetBitmap(wx.ART_TIP, wx.ART_OTHER, (16, 16))
         inputOneIco = wx.StaticBitmap(self, wx.ID_ANY, bmp)
         labelOne = wx.StaticText(self, wx.ID_ANY, 'Input 1')
         self.inputTxtOne = wx.TextCtrl(self, wx.ID_ANY, value='Text box')
@@ -67,13 +65,13 @@ class MyForm(wx.Panel):
         self.Bind(wx.EVT_BUTTON, self.onOK, okBtn)
         self.Bind(wx.EVT_BUTTON, self.onCancel, cancelBtn)
 
-        mainSizer        = wx.BoxSizer(wx.VERTICAL)
-        titleSizer      = wx.BoxSizer(wx.HORIZONTAL)
-        inputOneSizer   = wx.BoxSizer(wx.HORIZONTAL)
-        inputTwoSizer   = wx.BoxSizer(wx.HORIZONTAL)
+        mainSizer = wx.BoxSizer(wx.VERTICAL)
+        titleSizer = wx.BoxSizer(wx.HORIZONTAL)
+        inputOneSizer = wx.BoxSizer(wx.HORIZONTAL)
+        inputTwoSizer = wx.BoxSizer(wx.HORIZONTAL)
         inputThreeSizer = wx.BoxSizer(wx.HORIZONTAL)
-        inputFourSizer  = wx.BoxSizer(wx.HORIZONTAL)
-        btnSizer        = wx.BoxSizer(wx.HORIZONTAL)
+        inputFourSizer = wx.BoxSizer(wx.HORIZONTAL)
+        submitBtnSizer = wx.BoxSizer(wx.HORIZONTAL)
 
         titleSizer.Add(titleIco, 0, wx.ALL, 5)
         titleSizer.Add(title, 0, wx.ALL, 5)
@@ -97,8 +95,8 @@ class MyForm(wx.Panel):
         inputFourSizer.Add(self.inputFour2, 1, wx.ALL|wx.EXPAND, 5)
         inputFourSizer.Add(self.inputFour3, 1, wx.ALL|wx.EXPAND, 5)
 
-        btnSizer.Add(okBtn, 0, wx.ALL, 5)
-        btnSizer.Add(cancelBtn, 0, wx.ALL, 5)
+        submitBtnSizer.Add(okBtn, 0, wx.ALL, 5)
+        submitBtnSizer.Add(cancelBtn, 0, wx.ALL, 5)
 
         mainSizer.Add(titleSizer, 0, wx.CENTER)
         mainSizer.Add(wx.StaticLine(self,), 0, wx.ALL|wx.EXPAND, 5)
@@ -107,7 +105,7 @@ class MyForm(wx.Panel):
         mainSizer.Add(inputThreeSizer, 0, wx.ALL|wx.EXPAND, 5)
         mainSizer.Add(inputFourSizer, 0, wx.ALL|wx.EXPAND, 5)
         mainSizer.Add(wx.StaticLine(self), 0, wx.ALL|wx.EXPAND, 5)
-        mainSizer.Add(btnSizer, 0, wx.ALL|wx.CENTER, 5)
+        mainSizer.Add(submitBtnSizer, 0, wx.ALL|wx.CENTER, 5)
 
         self.SetSizer(mainSizer)
         mainSizer.Fit(self)

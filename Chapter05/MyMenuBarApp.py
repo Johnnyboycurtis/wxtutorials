@@ -98,7 +98,7 @@ class MyFrame(wx.Frame):
         self.InitUI()
          
     def InitUI(self):   
-        self.text = wx.TextCtrl(self,-1, style = wx.EXPAND|wx.TE_MULTILINE) 
+        self.text = wx.TextCtrl(parent=self, id=wx.ID_ANY, style = wx.EXPAND|wx.TE_MULTILINE) 
         menuBar = wx.MenuBar() 
 
         fileMenu = FileMenu(parentFrame=self)
