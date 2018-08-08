@@ -1,6 +1,3 @@
-# Chapter 4: Containers and Advanced Controls
-# Recipe 9: Surfing the web in your app
-#
 import wx
 from wx import html2
 
@@ -16,7 +13,7 @@ class WebFrame(wx.Frame):
         
         self._browser = html2.WebView.New(self)
         self._browser.LoadURL("www.google.com") # home page
-        self._bar = NaviBar(self, self._browser)
+        self._bar = NavBar(self, self._browser)
         
         
         sizer = wx.BoxSizer(wx.VERTICAL)
@@ -31,7 +28,7 @@ class WebFrame(wx.Frame):
 
 
 
-class NaviBar(wx.Panel):
+class NavBar(wx.Panel):
     def __init__(self, parent, browser):
         super().__init__(parent)
 
@@ -48,9 +45,9 @@ class NaviBar(wx.Panel):
                                              wx.ART_TOOLBAR)
 
         sizer = wx.BoxSizer(wx.HORIZONTAL)
-        sizer.Add(back, 0, wx.ALL, 5)
-        sizer.Add(fw, 0, wx.ALL, 5)
-        sizer.Add(self._url, 1, wx.EXPAND)
+        sizer.Add(back, proporition=0, flag=wx.ALL, border=5)
+        sizer.Add(fw, proportion=0, flag=wx.ALL, border=5)
+        sizer.Add(window=self._url, proportion=1, flag=wx.EXPAND)
         self.SetSizer(sizer)
 
 

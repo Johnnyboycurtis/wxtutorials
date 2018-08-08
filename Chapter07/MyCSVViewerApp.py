@@ -1,11 +1,6 @@
-'''
-Reference: https://wxpython.org/Phoenix/docs/html/grid_overview.html#grid-overview
-'''
-
 import wx
 import wx.grid as gridlib
 import csv
-import io
 
 class MyApp(wx.App):
     def __init__(self):

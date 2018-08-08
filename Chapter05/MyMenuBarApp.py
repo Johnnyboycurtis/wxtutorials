@@ -1,6 +1,3 @@
-'''
-Reference: https://www.tutorialspoint.com/wxpython/wxpython_menus.htm
-'''
 import os
 import wx  
 
