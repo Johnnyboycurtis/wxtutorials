@@ -36,16 +36,20 @@ class NavBar(wx.Panel):
         print("Current URL:", self.browser.GetCurrentURL())
         self._url = wx.TextCtrl(self, style=wx.TE_PROCESS_ENTER)
         self._url.SetHint("Enter URL here and press enter...")
+        self._url.Bind(wx.EVT_TEXT_ENTER, self.onEnter)
 
         back = wx.Button(self, style=wx.BU_EXACTFIT)
         back.Bitmap = wx.ArtProvider.GetBitmap(wx.ART_GO_BACK, 
                                                wx.ART_TOOLBAR)
+        back.Bind(wx.EVT_BUTTON, self.goBack)
+
         fw = wx.Button(self, style=wx.BU_EXACTFIT)
         fw.Bitmap = wx.ArtProvider.GetBitmap(wx.ART_GO_FORWARD,
                                              wx.ART_TOOLBAR)
+        fw.Bind(wx.EVT_BUTTON, self.goForward)
 
         sizer = wx.BoxSizer(wx.HORIZONTAL)
-        sizer.Add(back, proporition=0, flag=wx.ALL, border=5)
+        sizer.Add(back, proportion=0, flag=wx.ALL, border=5)
         sizer.Add(fw, proportion=0, flag=wx.ALL, border=5)
         sizer.Add(window=self._url, proportion=1, flag=wx.EXPAND)
         self.SetSizer(sizer)
