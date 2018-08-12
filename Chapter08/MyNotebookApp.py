@@ -1,5 +1,11 @@
 import wx
 
+class MyApp(wx.App):
+    def __init__(self):
+        super().__init__()
+        frame = MainFrame()
+        frame.Show()
+
 class NBPage(wx.Panel):
     def __init__(self, parent, message):
         super().__init__(parent)
@@ -7,7 +13,7 @@ class NBPage(wx.Panel):
 
 class MainFrame(wx.Frame):
     def __init__(self):
-        super().__init__(None, title="Simple Notebook Example")
+        super().__init__(None, title="Simple Notebook Example", pos = (100, 100))
 
         # Here we create a panel and a notebook on the panel
         self.p = wx.Panel(self)
@@ -22,13 +28,13 @@ class MainFrame(wx.Frame):
 
         self.createMenu() # initialize the menu bar
 
-        self.Show(True)
-
     def createMenu(self):
         menuBar = wx.MenuBar()
 
         fileMenu = wx.Menu() # first 
-        newItem = wx.MenuItem(parentMenu=fileMenu, id=wx.ID_NEW, text='New Page\tCtrl+N', helpString='Create New Page', kind=wx.ITEM_NORMAL) # subMenu is final option
+        newItem = wx.MenuItem(parentMenu=fileMenu, id=wx.ID_NEW, 
+                text='New Page\tCtrl+N', helpString='Create New Page', 
+                kind=wx.ITEM_NORMAL) # subMenu is final option
         fileMenu.Append(newItem)
         self.Bind(event=wx.EVT_MENU, handler=self.onNewItem, source=newItem)
 
@@ -47,6 +53,5 @@ class MainFrame(wx.Frame):
 
 
 if __name__ == "__main__":
-    app = wx.App()
-    MainFrame().Show()
+    app = MyApp()
     app.MainLoop()
